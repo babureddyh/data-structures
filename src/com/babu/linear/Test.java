@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Test {
 
-	public static void main(String args) {
+	public static void main() {
 		Scanner scan = new Scanner(System.in);
 		int a;
 		LinkedList<Integer> list = new LinkedList<>();
@@ -39,12 +39,15 @@ public class Test {
 //		
 //		list1.printList(LinkedListPrograms.<Integer>merge(list1.head, list2.head));
 		
-		LinkedList<Integer> list1 = new CircularLL<Integer>();
-		list1.append(1);
-		list1.append(2);
-		list1.append(3);
-		list1.append(4);
-		list1.append(5);
+		LinkedList<Integer> list1 = new LinkedList<Integer>();
+		list1.append(9);
+		list1.append(9);
+		list1.append(9);
+		list1.append(9);
+		list1.append(9);
 		list1.printList(list1.head);
 	}
+	
+	
+	
 }
