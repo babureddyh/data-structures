@@ -1,10 +1,9 @@
 package com.babu.hierarchical;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class BinarySearchTree {
-	private Node root;
+	protected Node root;
 	
 	public boolean insert(int data) {
 		if(root == null) {
@@ -178,5 +177,53 @@ public class BinarySearchTree {
 		inorderFillList(list, currentNode.left);
 		list.add(currentNode.data);
 		inorderFillList(list, currentNode.right);
+	}
+	
+	public int height() {
+		return height(root);
+	}
+	
+	public int height(Node node) {
+		if(node == null) return -1;
+		int leftHeight = height(node.left);
+		int rightHeight = height(node.right);
+		
+		return 1 + (rightHeight > leftHeight ? rightHeight : leftHeight);
+	}
+	
+	public int depth(int data) {
+		return depth(root, data);
+	}
+	private int depth(Node node, int data) {
+		if( node == null) return -1;
+		if(node.data == data) {
+			return 0;
+		}
+		int left = depth(node.left, data);
+		int right = depth(node.right, data);
+		if(left == -1 && right == -1) {
+			return -1;
+		} else if(left != -1) {
+			return 1 + left;
+		} else {
+			return 1 + right;
+		}
+	}
+	
+	public int diameter() {
+		return diameter(root);
+	}
+	
+	private int diameter(Node node) {
+		if(node == null) {
+			return 0;
+		}
+		int left = diameter(node.left);
+		int right = diameter(node.right);
+		if(node == root) {
+			return 1 + left+right;
+		} else {
+			return 1+(left > right?left:right);
+		}
 	}
 }
