@@ -128,4 +128,39 @@ public class BinarySearchTree {
 		return count;
 	}
 	
+	public Optional<Integer> countSubTreesInRangeOf(int min, int max) {
+		if(this.root == null) return Optional.empty(); else { countSubTreesInRangeOf(min, max, this.root);int a = countSubTrees; countSubTrees=0;return Optional.of(a);}
+	}
+	
+	public void transformToGreatestSumTree() {
+		transformToGreatestSumTree(this.root, 0);
+	}
+	
+	public int transformToGreatestSumTree(Node<Integer> node, int sum) {
+		if(node != null) {
+			sum = transformToGreatestSumTree(node.left, sum);
+			int currentSum = sum+node.data;
+			node.data = sum;
+			sum = transformToGreatestSumTree(node.right, currentSum);
+		}
+		
+		return sum;
+	}
+	
+	int countSubTrees = 0;
+	public boolean countSubTreesInRangeOf(int min, int max, Node<Integer> node) {
+		if(node != null) {
+			System.out.println("Node "+node.data);
+			boolean left = countSubTreesInRangeOf(min, max, node.left);
+			boolean right = countSubTreesInRangeOf(min, max, node.right);
+			if(node.data >= min && node.data <= max && left && right) {
+				countSubTrees ++;
+				return true;
+			} else {
+				return false;
+			}
+		}
+		return true;
+	}
+	
 }
