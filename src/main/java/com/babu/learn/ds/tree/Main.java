@@ -5,7 +5,7 @@ public class Main {
 	public static void main(String[] args) {
 //		BinarySearchTree bst = buildCompleteBST();
 //		bst.printInorderTraversal();
-		secondLargest();
+		countInRange();
 	}
 	
 	public static void secondLargest() {
@@ -15,6 +15,11 @@ public class Main {
 		
 		bst = buildEmptyTree();
 		bst.secondLargest();
+	}
+	
+	public static void countInRange() {
+		BinarySearchTree bst = buildCompleteBST();
+		System.out.println(" In range of 3 and 5 "+ bst.countInRangeOf(5, 3));
 	}
 	
 	public static BinarySearchTree buildEmptyTree() {

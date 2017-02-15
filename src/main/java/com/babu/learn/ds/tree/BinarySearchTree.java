@@ -111,4 +111,21 @@ public class BinarySearchTree {
 		return (node.right != null)?node:max(node.right);
 	}
 	
+	public Optional<Integer> countInRangeOf(int min, int max) {
+		if(this.root != null) {
+			return Optional.of(countInRangeOf(min, max, this.root,0));
+		}
+		return Optional.empty();
+	}
+	
+	public int countInRangeOf(int min, int max, Node<Integer> node, int count) {
+		if(node != null && node.data >= min && node.data <= max) {
+			int count1 = countInRangeOf(min, max, node.left, count);
+			count1++;
+			count1 = countInRangeOf(min, max, node.right, count1);
+			return count1;
+		}
+		return count;
+	}
+	
 }
